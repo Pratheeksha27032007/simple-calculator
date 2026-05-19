@@ -5,6 +5,7 @@ ops=document.querySelectorAll(".ops")
 solve=document.querySelector(".solve")
 let equation="",solved=false;
 let disp=(a)=>{
+
     if(solved){
         equation=""
         display.innerText=""
@@ -13,7 +14,10 @@ let disp=(a)=>{
     //edge cases
     if(a=="x"){equation+="*";display.innerText+=a}
     else if(a=="x2"){equation+="**2";display.innerText+="^2"}
-    else if(a=="sqrt"){equation+="**0.5";display.innerText+="sqrt()"}
+    else if(a=="BKSP"){
+    equation=equation.slice(0,-1)
+    display.innerText=display.innerText.slice(0,-1)
+    }
     else{ equation+=a;
     display.innerText+=a;}
 }
@@ -34,8 +38,7 @@ document.addEventListener("keydown",(e)=>{
     if(allowed.includes(e.key))disp(e.key); 
     //console.log(e.key)  
     if(e.key=="Backspace"){
-    equation=equation.slice(0,-1)
-    display.innerText=display.innerText.slice(0,-1)
+    disp("BKSP")
     }
     if(e.key=="Enter"){
     solve.click();
@@ -47,6 +50,7 @@ clear.addEventListener("click",()=>{
     display.innerText=""
 })
 solve.addEventListener("click",()=>{
+    if(equation=="")return;
     try{
     let ans=eval(equation)
     equation=ans.toString()
