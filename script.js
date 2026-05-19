@@ -20,19 +20,19 @@ let disp=(a)=>{
 nums.forEach((num)=>{
     num.addEventListener("click",()=>{
         disp(num.innerText);
-        console.log(num.innerText)
+        // console.log(num.innerText)
     })
 })
 ops.forEach((op)=>{
     op.addEventListener("click",()=>{
-        console.log(op.innerText)
+       // console.log(op.innerText)
         disp(op.innerText);
     })
 })
 document.addEventListener("keydown",(e)=>{
     let allowed="0123456789+-*/%."
     if(allowed.includes(e.key))disp(e.key); 
-    console.log(e.key)  
+    //console.log(e.key)  
     if(e.key=="Backspace"){
     equation=equation.slice(0,-1)
     display.innerText=display.innerText.slice(0,-1)
@@ -50,7 +50,7 @@ solve.addEventListener("click",()=>{
     try{
     let ans=eval(equation)
     equation=ans.toString()
-    console.log(ans)
+    //console.log(ans)
     display.innerText=ans;
     solved=true;
     }
